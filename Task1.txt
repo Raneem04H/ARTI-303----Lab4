@@ -1,1 +1,53 @@
+41 ?- house = house.
+true.
 
+## Both sides are identical atoms (house), so unification succeeds without needing any variables.
+
+42 ?- house = abc.
+false.
+
+## Unification fails because house and abc are two different constants and cannot match.
+
+43 ?- edge(a,b) = edge(C,b).
+C = a.
+
+## The predicate names and argument counts match. The second arguments match (b = b), so variable C unifies with atom a.
+
+44 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+
+## Positional matching binds variable C to atom a and variable B to atom d.
+
+45 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+
+## Unification is symmetric. Variable C unifies with a and variable B unifies with d.
+
+46 ?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+
+## Variable A unifies with atom a, and variable B unifies with the entire compound term f(g, h).
+
+47 ?- edge(A,A) = edge(b,c).
+false.
+
+## Unification fails because the same variable A cannot be instantiated to two different constants (b and c) simultaneously.
+
+48 ?- 
+|    edge(A,A) = edge(b,b).
+A = b.
+
+## Unification succeeds because both positions contain the same constant b, so A is successfully instantiated to b.
+
+49 ?-  A = B, B = f.
+A = B, B = f.
+
+## Variable A is bound to variable B, and then B is instantiated to atom f, making both A and B hold the value f.
+
+50 ?- A = B, B = f, A = e.
+false.
+
+## First, A and B both become f. Unification then fails when trying to match A (which is now f) with e, because f and e are different constants.
