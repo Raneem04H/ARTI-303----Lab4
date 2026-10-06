@@ -1,1 +1,32 @@
+45 ?- female(X).
+X = sara ;
+X = nora.
 
+## Queries all female individuals in the database, binding variable X sequentially to sara and nora.
+
+46 ?- male(_).
+true .
+
+## Uses the anonymous variable (_) to verify whether at least one male exists in the database without returning a specific name.
+
+47 ?- parent(GP, P), parent(P, faisal).
+GP = ali,
+P = muhammad .
+
+## Finds the grandparent GP of Faisal by first identifying Faisal's parent P (muhammad) and then finding P's parent GP (ali).
+
+48 ?- parent(ahmad, X), female(X).
+X = sara ;
+X = nora .
+
+## Finds all daughters of Ahmad by selecting individuals X where Ahmad is the parent and X is female.
+
+49 ?- parent(P, ahmad), parent(P, muhammad).
+P = ali.
+
+## Verifies if Ahmad and Muhammad have a common parent by finding a person P (ali) who is parent to both.
+
+50 ?- male(khan), parent(P, khan), parent(P, nora).
+P = ahmad.
+
+## Checks if Khan is a brother of Nora by verifying that Khan is male and both Khan and Nora share the same parent P (ahmad).
